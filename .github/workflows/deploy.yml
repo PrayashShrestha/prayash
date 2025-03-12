@@ -1,0 +1,32 @@
+name: Deploy Vite React Portfolio App to Cloudflare Pages
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install Node.js 22
+        uses: actions/setup-node@v3
+        with:
+          node-version: 22
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build the Vite app
+        run: npm run build
+
+      - name: Deploy to Cloudflare Pages
+        uses: cloudflare/pages-action@v1
+        with:
+          account-id: ${{ secrets.CF_ACCOUNT_ID }}
+          project-name: "prayash-shrestha"
+          api-token: ${{ secrets.CF_API_TOKEN }}
+          directory: "dist"
