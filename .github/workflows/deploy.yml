@@ -26,7 +26,9 @@ jobs:
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/pages-action@v1
         with:
-          account-id: ${{ secrets.CF_ACCOUNT_ID }}
-          project-name: "prayash-shrestha"
-          api-token: ${{ secrets.CF_API_TOKEN }}
-          directory: "dist"
+          accountId: ${{ secrets.CF_ACCOUNT_ID }}
+          projectName: prayash-shrestha
+          apiToken: ${{ secrets.CF_API_TOKEN }}
+          directory: dist
+          wranglerVersion: 2
+
